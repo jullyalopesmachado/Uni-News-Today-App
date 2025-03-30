@@ -6,6 +6,7 @@ import logoImage from "../assets/stetsonLogo.png";
 import backgroundImage from "../assets/8721c539-55df-468e-bbfc-3aa36fa6374a.png"; 
 import backgroundIv from "../assets/backinv.png"; 
 import Nav from "react-bootstrap/Nav";
+import avatarImage from '../assets/dummyPic.png';
 
 function UserList() {
     const [users, setUsers] = useState([]); // Store all users
@@ -76,26 +77,35 @@ function UserList() {
             </Container>
 
             {/* User Cards */}
+           {/* User Cards */}
             <Container className="mt-4">
-                <Row>
+                <Row className="justify-content-center">
                     {currentItems.map((user) => (
-                        <Col key={user._id} md={4} className="mb-4">
-                            <Card>
-                                <Card.Body>
+                        <Col key={user._id} md={3} className="mb-4">
+                            <Card className="d-flex justify-content-center align-items-center" style={{ width: '18rem' }}>
+                                <Card.Body className="d-flex flex-column align-items-center">
+                                    <div className="d-flex justify-content-center mb-3">
+                                        <Card.Img
+                                            variant="top"
+                                            src={avatarImage}
+                                            style={{ width: '8rem', height: '8rem', objectFit: 'cover', borderRadius: '50%' }} // Adjusting the image size and making it round
+                                        />
+                                    </div>
                                     <Card.Title>{user.first_name} {user.last_name}</Card.Title>
                                     <Card.Text>
                                         <strong>Major:</strong> {user.major} <br />
                                         <strong>Company:</strong> {user.company} <br />
                                     </Card.Text>
+
                                     <Container className="d-flex justify-content-center align-items-center">
-                                    <Button variant="outline-success">View Profile</Button>
+                                        <Button variant="outline-success" onClick={() => navigate(`/user/${user._id}`)}>View Profile</Button>
                                     </Container>
                                 </Card.Body>
                             </Card>
                         </Col>
                     ))}
                 </Row>
-
+                
                 {/* Pagination */}
                 {totalPages > 1 && (
                     <Pagination className="justify-content-center mt-4">
