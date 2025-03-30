@@ -5,7 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Accordion, Button, Carousel, Alert, Breadcrumb, Card, Form, Nav, Navbar, NavDropdown, NavbarCollapse, Modal, Dropdown } from 'react-bootstrap';
 //import '../assets/bootstrap.min.css';
 import logoImage from '../assets/stetsonLogo.png';
-
+import backgroundImage from '../assets/8721c539-55df-468e-bbfc-3aa36fa6374a.png'; // Import background image asset
+import backgroundIv from '../assets/backinv.png'; // Import background image asset
 import CardGroup from 'react-bootstrap/CardGroup';
 
 function AdminPanelUser() {
@@ -110,7 +111,36 @@ function AdminPanelUser() {
                 </Accordion.Item>
             </Accordion>
             </Container>
+                    
+            <Container className="d-flex justify-content-center align-items-center mt-5 mb-5">
            
+                                     {/* Background image positioned in the top-right corner of the navbar */}
+                                     <div
+                                       style={{
+                                       position: 'absolute',  // Positioning it within the navbar
+                                       top: 0,
+                                       right: 0,
+                                       width: '150px',  // Set a small size for the background image
+                                       height: '350px',  // Set a small size for the background image
+                                       backgroundImage: `url(${backgroundImage})`,  // Background image URL
+                                       backgroundSize: 'cover',  // Ensure the background image covers the div
+                                       backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                                       }}
+                           />
+           
+                                   <div
+                                       style={{
+                                       position: 'absolute',  // Positioning it within the navbar
+                                       top: 600,
+                                       right: 1100,
+                                       width: '400px',  // Set a small size for the background image
+                                       height: '140px',  // Set a small size for the background image
+                                       backgroundImage: `url(${backgroundIv})`,  // Background image URL
+                                       backgroundSize: 'cover',  // Ensure the background image covers the div
+                                       backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                                       }}
+                            />
+                </Container>
 
         </div>
     

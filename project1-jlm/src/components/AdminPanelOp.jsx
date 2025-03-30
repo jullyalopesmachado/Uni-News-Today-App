@@ -8,7 +8,8 @@ import logoImage from '../assets/stetsonLogo.png';
 import bird1Image from '../assets/birds1.jpg';
 import bird2Image from '../assets/birds2.jpg';
 import hawksImage from '../assets/hawks2.jpeg';
-
+import backgroundImage from '../assets/8721c539-55df-468e-bbfc-3aa36fa6374a.png'; // Import background image asset
+import backgroundIv from '../assets/backinv.png'; // Import background image asset
 import CardGroup from 'react-bootstrap/CardGroup';
 function AdminPanelOp() {
 
@@ -32,7 +33,7 @@ function AdminPanelOp() {
             
             
                                     <Navbar.Collapse id="basic-navbar-nav" className="me-auto img-fluid">
-                                    <Nav className="me-auto" >
+                                    <Nav className="ms-auto" >
                                     </Nav>
                                     <Nav className="ms-auto"> 
                                         {/* Dropdown for user login status */}
@@ -91,7 +92,36 @@ function AdminPanelOp() {
                 </Card>
                 </>
             </Container>
+                    
+                       <Container className="d-flex justify-content-center align-items-center mt-5 mb-5">
            
+                                     {/* Background image positioned in the top-right corner of the navbar */}
+                                     <div
+                                       style={{
+                                       position: 'absolute',  // Positioning it within the navbar
+                                       top: 0,
+                                       right: 0,
+                                       width: '150px',  // Set a small size for the background image
+                                       height: '350px',  // Set a small size for the background image
+                                       backgroundImage: `url(${backgroundImage})`,  // Background image URL
+                                       backgroundSize: 'cover',  // Ensure the background image covers the div
+                                       backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                                       }}
+                           />
+           
+                                   <div
+                                       style={{
+                                       position: 'absolute',  // Positioning it within the navbar
+                                       top: 490,
+                                       right: 1100,
+                                       width: '400px',  // Set a small size for the background image
+                                       height: '250px',  // Set a small size for the background image
+                                       backgroundImage: `url(${backgroundIv})`,  // Background image URL
+                                       backgroundSize: 'cover',  // Ensure the background image covers the div
+                                       backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                                       }}
+                            />
+                        </Container>
 
         </div>
     
