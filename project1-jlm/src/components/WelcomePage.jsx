@@ -16,6 +16,7 @@ function WelcomePage() {
     const [showModal, setShowModal] = useState(false); // This state will control the modal visibility
     const [isLogin, setIsLogin] = useState(false); // This state will control the modal visibility
     const navigate = useNavigate(); // This will be used to navigate to different pages
+
     const handleSelect = (eventKey) => {
         setUserStatus(eventKey); // Update user status when an option is selected
     };
@@ -40,7 +41,9 @@ function WelcomePage() {
                         <Nav className="me-auto" >
                         {(userStatus === "User logged in" || userStatus === "Admin logged in") && (
                             <>
-                                <Button variant="outline-success" className="ms-4">Profile</Button>
+                                <Button variant="outline-success" className="ms-4" onClick={() => navigate('/profilePage')}>Profile</Button>
+
+
                                 <Button variant="outline-success" className="ms-4">Opportunities</Button>
                                 <Button variant="outline-success" className="ms-4">Users</Button>
                             </>
