@@ -5,6 +5,7 @@ import AdminPanelOp from '/src/components/AdminPanelOp.jsx';
 import AdminPanelUser from '/src/components/AdminPanelUser.jsx';
 import ProfilePage from '/src/components/ProfilePage.jsx';
 import OpportunitiesListPage from '/src/components/OppListPage.jsx';
+import UserListPage from '/src/components/UserList.jsx';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ function App() {
       <Route path="/adminPanelOp" element={<AdminPanelOp />} />
       <Route path="/adminPanelUser" element={<AdminPanelUser />} />
       <Route path="/profilePage" element={<ProfilePage />} />
-      
+      <Route path="/userListPage" element={<UserListPage />} />
       <Route path="/oppPage" element={<OpportunitiesListPage />} />
 
       </Routes>

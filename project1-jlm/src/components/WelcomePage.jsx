@@ -45,7 +45,7 @@ function WelcomePage() {
 
 
                                 <Button variant="outline-success" className="ms-4" onClick={() => navigate('/oppPage')}>Opportunities</Button>
-                                <Button variant="outline-success" className="ms-4">Users</Button>
+                                <Button variant="outline-success" className="ms-4" onClick={() => navigate('/userListPage')}>Users</Button>
                             </>
                         )}
                         </Nav>
