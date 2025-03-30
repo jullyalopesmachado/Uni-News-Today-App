@@ -7,6 +7,7 @@ import ProfilePage from '/src/components/ProfilePage.jsx';
 import OpportunitiesListPage from '/src/components/OppListPage.jsx';
 import UserListPage from '/src/components/UserList.jsx';
 import User from '/src/components/User.jsx';
+import OppPage from '/src/components/OppPage.jsx';
 
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -27,6 +28,8 @@ function App() {
       <Route path="/userListPage" element={<UserListPage />} />
       <Route path="/oppPage" element={<OpportunitiesListPage />} />
       <Route path="/user/:id" element={<User />} />
+
+      <Route path="/opportunity/:id" element={<OppPage />} />
 
       </Routes>
     </Router>

@@ -59,7 +59,6 @@ function UserList() {
                                     <>
                                         <Button variant="outline-success" className="ms-4" onClick={() => navigate("/")}>Home</Button>
                                         <Button variant="outline-success" className="ms-4" onClick={() => navigate("/profilePage")}>Profile</Button>
-                                        <Button variant="outline-success" className="ms-4">Users</Button>
                                     </>
                                 )}
                             </Nav>
@@ -105,7 +104,7 @@ function UserList() {
                         </Col>
                     ))}
                 </Row>
-                
+
                 {/* Pagination */}
                 {totalPages > 1 && (
                     <Pagination className="justify-content-center mt-4">

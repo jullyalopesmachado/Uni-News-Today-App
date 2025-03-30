@@ -6,6 +6,7 @@ import { Nav } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import backgroundImage from '../assets/8721c539-55df-468e-bbfc-3aa36fa6374a.png'; // Import background image asset
 import backgroundIv from '../assets/backinv.png'; // Import background image asset
+
 function OppListPage() {
     
     // State to store fetched opportunities
@@ -64,7 +65,7 @@ function OppListPage() {
                                 <>
                                     <Button variant="outline-success" className="ms-4" onClick={() => navigate("/")}>Home</Button>
                                     <Button variant="outline-success" className="ms-4" onClick={() => navigate("/profilePage")}>Profile</Button>
-                                    <Button variant="outline-success" className="ms-4">Users</Button>
+                                    <Button variant="outline-success" className="ms-4" onClick={() => navigate("/userListPage")}>Users</Button>
       
                                 </>
                             )}
@@ -73,8 +74,8 @@ function OppListPage() {
                         <Nav className="me-auto">
                             {userStatus === "Admin logged in" && (
                                 <NavDropdown title="Administrator">
-                                    <NavDropdown.Item onClick={() => navigate('adminPanelOp')}>Approve Opportunity</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navigate('adminPanelUser')}>Approve User</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/adminPanelOp')}>Approve Opportunity</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/adminPanelUser')}>Approve User</NavDropdown.Item>
                                 </NavDropdown>
                             )}
                         
@@ -98,7 +99,12 @@ function OppListPage() {
                                     <Card.Title>{opportunity.title}</Card.Title>
                                     <Card.Text>{opportunity.description}</Card.Text>
                                     {/* Button to view details (currently non-functional) */}
-                                    <Button variant="outline-success">View Details</Button>
+                                    <Button
+                                        variant="outline-success"
+                                        onClick={() => navigate(`/opportunity/${opportunity._id}`)} // Navigate to OpportunityDetailPage
+                                    >
+                                        View Details
+                                    </Button>
                                 </Card.Body>
                                 {/* Footer with posted by information */}
                                 <Card.Footer className="text-muted">
