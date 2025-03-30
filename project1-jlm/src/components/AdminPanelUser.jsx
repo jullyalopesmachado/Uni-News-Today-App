@@ -65,9 +65,13 @@ function AdminPanelUser() {
                 <Accordion.Item eventKey="0">
                         <Accordion.Header>Stetson Faculty</Accordion.Header>
                             <Accordion.Body>
-                                Dr. Plante, professor of Computer Science,
-                                has won a Nobel Prize in Physics! 
-                                Also, Dr. Hala ElAarag is a former nasa pilot!
+                            Stetson University is a private university in DeLand, Florida, United States.
+                            Established in 1883 as DeLand Academy, it was later renamed John B. 
+                            Stetson University in honor of John B. Stetson.
+                            Stetson has famous professors! 
+                            Dr. Plante, professor of Computer Science,
+                            has won a Nobel Prize in Physics! 
+                            Also, Dr. Hala ElAarag is a former Nasa pilot!
                             </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">

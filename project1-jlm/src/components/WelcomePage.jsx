@@ -13,11 +13,18 @@ import CardGroup from 'react-bootstrap/CardGroup';
 function WelcomePage() {
 
     const [userStatus, setUserStatus] = useState("Logged out"); // This state will control the dropdown status in the bottom
+    const [showModal, setShowModal] = useState(false); // This state will control the modal visibility
+    const [isLogin, setIsLogin] = useState(false); // This state will control the modal visibility
     const navigate = useNavigate(); // This will be used to navigate to different pages
     const handleSelect = (eventKey) => {
         setUserStatus(eventKey); // Update user status when an option is selected
     };
 
+    const handleLoginSignupClick = (isLogin) => { // This function will be used to handle the login and signup button click
+        setIsLogin(isLogin); // Set the login or signup state
+        setShowModal(true);
+      };
+          
     return (
         <div className="min-vh-100 w-100">
             {/* Header Section */}
@@ -39,6 +46,16 @@ function WelcomePage() {
                             </>
                         )}
                         </Nav>
+
+                        {(userStatus === "Logged out") && (
+                            <>
+                                <Button variant="outline-success" className="ms-4" onClick={() => handleLoginSignupClick(true)}>Login</Button> {/* Calls the handleLoginSignupClick function with 'true' as the argument to show the login modal */}
+                                <Button variant="outline-success" className="ms-4" onClick={() => handleLoginSignupClick(false)}>Signup</Button> {/* Calls the handleLoginSignupClick function with 'false' as the argument to show the signup modal */}
+                            </>
+                        )}
+                            
+                        <Container className="mt-4 d-flex justify-content-start align-items-center">
+
                         <Nav className="ms-auto"> 
                             {/* Dropdown for user login status */}
                             {userStatus === "Admin logged in" && (
@@ -50,6 +67,53 @@ function WelcomePage() {
                                 </NavDropdown>
                             )}
                             </Nav>
+
+                        </Container>
+
+                        {/* Conditionally render the modal */}
+                        {showModal && (
+                            <Modal show onHide={() => setShowModal(false)}>
+                                <Modal.Header closeButton>
+                                <Modal.Title>{isLogin ? "Login" : "Signup"}</Modal.Title>
+                                </Modal.Header>
+
+                                <Modal.Body>
+                                <Form>
+                                    <Form.Group className="mb-3" controlId="formBasicUsername">
+                                    <Form.Label>Username</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter username" />
+                                    </Form.Group>
+
+                                    {!isLogin && (
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Label>Email address</Form.Label>
+                                        <Form.Control type="email" placeholder="Enter email" />
+                                    </Form.Group>
+                                    )}
+
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" placeholder="Enter password" />
+                                    </Form.Group>
+
+                                    <Button variant="success" type="submit" block>
+                                    {isLogin ? "Login" : "Signup"}
+                                    </Button>
+                                </Form>
+                                </Modal.Body>
+
+                                <Modal.Footer>
+                                <Button variant="success" onClick={() => setShowModal(false)}>
+                                    Close
+                                </Button>
+                                <Button variant="success" onClick={() => setShowModal(false)}>
+                                    {isLogin ? "Login" : "Signup"}
+                                </Button>
+                                </Modal.Footer>
+                            </Modal>
+                            )}
+
+                                            
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
