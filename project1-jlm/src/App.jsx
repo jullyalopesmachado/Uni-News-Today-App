@@ -1,10 +1,22 @@
 import { useState } from 'react'
 import WelcomePage from '/src/components/WelcomePage.jsx'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AdminPanelOp from '/src/components/AdminPanelOp.jsx';
+import AdminPanelUser from '/src/components/AdminPanelUser.jsx';
 
 function App() {
 
   return (
-      <WelcomePage />
+    <Router>
+      <Routes>
+
+      <Route path="/" element={<WelcomePage />} /> 
+
+      <Route path="/adminPanelOp" element={<AdminPanelOp />} />
+      <Route path="/adminPanelUser" element={<AdminPanelUser />} />
+
+      </Routes>
+    </Router>
   );
 }
 
