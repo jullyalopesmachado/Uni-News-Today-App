@@ -1,124 +1,177 @@
-// Importing React and useState hook for managing component state
-import React, { useState, useEffect } from "react";
-import { Container, Navbar, Nav, NavDropdown, Card, Button} from 'react-bootstrap';
-import logoImage from '../assets/stetsonLogo.png';
-import { useNavigate } from "react-router-dom";
-import avatarImage from '../assets/eddie.png';
-function  ProfilePage() {
+// Import necessary dependencies
+import React, { useState, useEffect } from "react"; // React core features (state and effects)
+import { Container, Navbar, Nav, NavDropdown, Card, Button, Dropdown } from 'react-bootstrap'; // Bootstrap components for styling
+import { useNavigate, useParams } from "react-router-dom"; // React Router for navigation and route parameters
+import logoImage from '../assets/stetsonLogo.png'; // Import logo image asset
+import avatarImage from '../assets/eddiechris.jpg'; // Import avatar image asset
+import backgroundImage from '../assets/8721c539-55df-468e-bbfc-3aa36fa6374a.png'; // Import background image asset
+import backgroundIv from '../assets/backinv.png'; // Import background image asset
+function ProfilePage() {
+    // State variables to store user profile data
+    const [_id, setId] = useState(null);
+    const [user_name, setUserName] = useState(null);
+    const [first_name, setFirstName] = useState(null);
+    const [last_name, setLastName] = useState(null);
+    const [year_graduated, setYearGraduated] = useState(null);
+    const [major, setMajor] = useState(null);
+    const [company, setCompany] = useState(null);
+    const [title, setTitle] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [linkedin_link, setLinkedin] = useState(null);
 
-    const [firstName, setFirstName] = useState("Layne");
-    const [lastName, setLastName] = useState("Staley");
-    const [userBio, setUserBio] = useState(null);
-    const [userLocation, setUserLocation] = useState(null);
-    const [userWebsite, setUserWebsite] = useState(null);
-    const [userId, setUserId] = useState(null); 
-  
-    const [userStatus, setUserStatus] = useState("Logged out"); // This state will control the dropdown status in the bottom
-    const navigate = useNavigate(); // This will be used to navigate to different pages
+    // State variable for user authentication status
+    const [userStatus, setUserStatus] = useState("User logged in");
     
-    
-  const fetchProfile = async () => {
-    const token = localStorage.getItem("token"); // Retrieve token from local storage
-    try {
-      const response = await fetch("http://138.197.99.80:2490/api/users", { // or http://localhost:2400/users
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    // Hook for programmatic navigation
+    const navigate = useNavigate();
 
-      if (response.ok) {
-        const profile = await response.json();
-
-        console.log("User Profile:", profile);
-
-        // Split user.name into firstName and lastName
-        const [firstName, lastName] = (profile.name || "").split(" ");
-        setFirstName(firstName || "");
-        setLastName(lastName || "");
-
-        // Set other profile data
-        setUserId(profile._id);
-        setUserBio(profile.bio || "");
-        setUserLocation(profile.location || "");
-        setUserWebsite(profile.website || "");
-      } else {
-        console.error("Error fetching user profile:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error fetching user profile:", error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchProfile();
+    // Fetch profile data when the component mounts
+    useEffect(() => {
+        console.log("Fetching profile...");
+        fetchProfile();
     }, []);
 
+    // Function to fetch user profile data from the backend
+    const fetchProfile = async () => {
+        const token = localStorage.getItem('token'); // Retrieve authentication token
+        try {
+            const response = await fetch('http://138.197.99.80:2490/api/users/jlm', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            if (response.ok) {
+                const profile = await response.json(); // Parse JSON response
+                console.log("API Response JSON:", profile);
+
+                // Update state with retrieved profile data
+                setId(profile._id);
+                setUserName(profile.user_name);
+                setFirstName(profile.first_name);
+                setLastName(profile.last_name);
+                setYearGraduated(profile.year_graduated);
+                setMajor(profile.major);
+                setCompany(profile.company);
+                setTitle(profile.title);
+                setEmail(profile.email);
+                setLinkedin(profile.linkedin_link);
+            } else {
+                console.error("Failed to fetch profile. Status:", response.status);
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+    };
+
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
 
-                    <div className="min-vh-100 w-100">
-                        {/* Header Section */}
-                                {/* Navbar Section */}
-                        <Container className="mt-4 d-flex justify-content-start align-items-center">    
-                                <Navbar expand="lg" className="img-fluid">
-                                <Container className="mt-4 d-flex justify-content-start align-items-center">
-                                <Card.Img variant="top" src={logoImage} className="me-auto img-fluid" style={{width: '15%'}}  />
-                                    <Navbar.Toggle aria-controls="basic-navbar" className="me-auto"  />
-            
-            
-                                    <Navbar.Collapse id="basic-navbar-nav" className="me-auto img-fluid">
-                                    <Nav className="me-auto" >
-                                    </Nav>
-                                    <Nav className="ms-auto"> 
-                                        {/* Dropdown for user login status */}
-                                        {userStatus === "Admin logged in" && (
-                                            
-                                            <NavDropdown title="Administrator" id="basic-nav-dropdown">
-                                                <NavDropdown.Item onClick={() => navigate('/')}>Home</NavDropdown.Item>
-            
-                                            </NavDropdown>
-                                        )}
-                                        </Nav>
-                                    </Navbar.Collapse>
-                                </Container>
-                            </Navbar>
-                        </Container>
-                        {/* User profile card Section */}                  
+        <div className="min-vh-100 w-100">
+    
+            {/* Navigation Bar */}
+            <Container className="mt-4 d-flex justify-content-start align-items-center">
+                <Navbar expand="lg">
+                    <Container className="mt-4 d-flex justify-content-start align-items-center">
+
+                        {/* Logo and Navbar */}
+                        <Card.Img variant="top" src={logoImage} className="me-auto img-fluid" style={{ width: '15%' }} />
+                        <Navbar.Toggle aria-controls="basic-navbar" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="me-auto">
+                                {/* Display navigation options based on user status */}
+                                {(userStatus === "User logged in" || userStatus === "Admin logged in") && (
+                                    <>
+                                        <Button variant="outline-success" className="ms-4">Home</Button>
+                                        <Button variant="outline-success" className="ms-4">Opportunities</Button>
+                                        <Button variant="outline-success" className="ms-4">Users</Button>
+          
+                                    </>
+                                )}
+                            </Nav>
+
+                            <Nav className="me-auto">
+                                {userStatus === "Admin logged in" && (
+                                    <NavDropdown title="Administrator">
+                                        <NavDropdown.Item onClick={() => navigate('adminPanelOp')}>Approve Opportunity</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={() => navigate('adminPanelUser')}>Approve User</NavDropdown.Item>
+                                    </NavDropdown>
+                                )}
                             
-                    <Container className="d-flex justify-content-center align-items-center mt-2 min-vh-110">
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </Container>
 
-                        <Card style={{ width: '28rem', paddingTop: '8rem' , paddingBottom: '3rem' ,  background: 'linear-gradient(rgba(199, 200, 216, 0.9), rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.9)' }}>
-                        <div  className="d-flex justify-content-center align-items-center">
-                        <Card.Img variant="top" src={avatarImage}/* will be pulled from database*/  className="rounded-circle img-fluid h-100 w-50" />
-                        </div>
-                            <Card.Body>
-                            {/* Display user's first and last name */}
-                            <Card.Title>{firstName} {lastName}</Card.Title>
-                                {/* Display user's bio */}
-                                <Card.Text>
-                                {userBio || "No bio provided"}
-                                </Card.Text>
+            {/* Profile Card */}
+            <Container className="d-flex justify-content-center align-items-center mt-5 mb-5">
 
-                                {/* Display user's location */} 
+                          {/* Background image positioned in the top-right corner of the navbar */}
+                          <div
+                            style={{
+                            position: 'absolute',  // Positioning it within the navbar
+                            top: 0,
+                            right: 0,
+                            width: '200px',  // Set a small size for the background image
+                            height: '350px',  // Set a small size for the background image
+                            backgroundImage: `url(${backgroundImage})`,  // Background image URL
+                            backgroundSize: 'cover',  // Ensure the background image covers the div
+                            backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                            }}
+                />
 
-                            <Card.Text>
-                                <strong>Located in:</strong> {userLocation || "No location provided"}
-                            </Card.Text>
+                        <div
+                            style={{
+                            position: 'absolute',  // Positioning it within the navbar
+                            top: 500,
+                            right: 1100,
+                            width: '400px',  // Set a small size for the background image
+                            height: '350px',  // Set a small size for the background image
+                            backgroundImage: `url(${backgroundIv})`,  // Background image URL
+                            backgroundSize: 'cover',  // Ensure the background image covers the div
+                            backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                            }}
+                />
 
-                            {/* Display user's website */}
-                            <Card.Text>
-                                <strong>Find {firstName} at: </strong>
-                                {userWebsite || "No website provided"}
-                            </Card.Text>
-                            </Card.Body>
-                        </Card>
-                        </Container>
 
+                
+                     
+                <Card style={{ width: '28rem', paddingTop: '3rem', paddingBottom: '3rem' }}>
+                    <div className="d-flex justify-content-center align-items-center">
+                    <Card.Img variant="top" src={avatarImage} className="rounded-circle img-fluid" style={{ height: '220px', width: '240px' }} />
 
-
-                        </div>
                     </div>
-            
+                    <Card.Body>
+                        <Card.Title>{first_name} {last_name}</Card.Title>
+                        <Card.Text><strong>Major:</strong> {major}</Card.Text>
+                        <Card.Text><strong>Company:</strong> {company}</Card.Text>
+                        <Card.Text><strong>Title:</strong> {title}</Card.Text>
+                        <Card.Text>
+                            <strong>LinkedIn:</strong> {linkedin_link ? <a href={linkedin_link} target="_blank" rel="noopener noreferrer">Profile</a> : "No LinkedIn provided"}
+                        
+                        </Card.Text>
 
-)} export default ProfilePage;
+                    </Card.Body>
+                </Card>
+            
+            </Container>
+
+            {/* User Status Dropdown */}
+            <Container className="d-flex justify-content-center align-items-center mt-5 mb-5">
+                <Dropdown>
+                    <Dropdown.Toggle variant="success">
+                        {userStatus}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => setUserStatus("User logged in")}>User logged in</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setUserStatus("Admin logged in")}>Admin logged in</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </Container>
+        </div>
+
+    );
+}
+
+export default ProfilePage;
