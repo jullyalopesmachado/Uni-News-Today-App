@@ -74,8 +74,8 @@ function User() {
                                 {(userStatus === "User logged in" || userStatus === "Admin logged in") && (
                                     <>
                                         <Button variant="outline-success" className="ms-4" onClick={() => navigate("/")}>Home</Button>
-                                        <Button variant="outline-success" className="ms-4">Opportunities</Button>
-                                        <Button variant="outline-success" className="ms-4">Users</Button>
+                                        <Button variant="outline-success" className="ms-4" onClick={() => navigate("/oppPage")}>Opportunities</Button>
+                                        <Button variant="outline-success" className="ms-4" onClick={() => navigate("/userListPage")}>Users</Button>
                                     </>
                                 )}
                             </Nav>
