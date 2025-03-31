@@ -1,6 +1,6 @@
 # University News Today Web Application
 
-Opportunity Management Web App
+Opportunity, News and Engagement Web App
 
 # Overview
 
