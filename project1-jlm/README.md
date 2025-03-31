@@ -1,12 +1,41 @@
-# React + Vite
+# University News Today Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Opportunity Management Web App
 
-Currently, two official plugins are available:
+# Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This web application is designed to streamline the management and discovery of opportunities, such as internships, jobs, and volunteer programs, as well as accessing the latest news in our University campus. 
 
-## Expanding the ESLint configuration
+It also provides users with a platform to explore available opportunities, manage their profiles, and engage with administrators for approvals and updates, as well as search the database for other student users.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Features
+
+User Authentication: Users can log in to access personalized features.
+
+Opportunity Listings: View detailed information about available opportunities, including descriptions, type, and posting dates.
+
+Navigation System: Easily move between pages such as the Profile Page, Opportunities Page, and User List Page.
+
+Admin Panel: Special access for administrators to approve new opportunities and users.
+
+Dynamic UI: Responsive design with a visually appealing layout, including background images and a structured navigation bar.
+
+# Technologies Used
+
+React.js for frontend development
+
+React Bootstrap for UI components
+
+React Router for navigation
+
+Fetch API for retrieving data from the backend
+
+# How It Works
+
+Users log in to access the system.
+
+They can browse and view available opportunities.
+
+Admin users can approve or manage users and opportunities.
+
+Navigation allows seamless movement between different sections of the web app.
