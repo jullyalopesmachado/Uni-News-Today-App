@@ -122,6 +122,39 @@ function User() {
                     </Dropdown.Menu>
                 </Dropdown>
             </Container>
+            
+            <Container className="d-flex justify-content-center align-items-center mt-5 mb-5">
+                                      {/* Background image positioned in the top-right corner of the navbar */}
+                                      <div
+                                        style={{
+                                        position: 'absolute',  // Positioning it within the navbar
+                                        top: 0,
+                                        right: 0,
+                                        width: '200px',  // Set a small size for the background image
+                                        height: '350px',  // Set a small size for the background image
+                                        backgroundImage: `url(${backgroundImage})`,  // Background image URL
+                                        backgroundSize: 'cover',  // Ensure the background image covers the div
+                                        backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                                        }}
+                            />
+            
+                                    <div
+                                        style={{
+                                        position: 'absolute',  // Positioning it within the navbar
+                                        top: 510,
+                                        right: 1100,
+                                        width: '400px',  // Set a small size for the background image
+                                        height: '350px',  // Set a small size for the background image
+                                        backgroundImage: `url(${backgroundIv})`,  // Background image URL
+                                        backgroundSize: 'cover',  // Ensure the background image covers the div
+                                        backgroundRepeat: 'no-repeat',  // Prevent repeating the image
+                                        }}
+                            />
+
+            </Container>
+
+
+
         </div>
     );
 }
